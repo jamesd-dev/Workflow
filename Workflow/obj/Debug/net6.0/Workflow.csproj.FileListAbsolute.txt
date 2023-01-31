@@ -1,0 +1,15 @@
+D:\Workflow\Workflow\Workflow\bin\Debug\net6.0\Workflow.exe
+D:\Workflow\Workflow\Workflow\bin\Debug\net6.0\Workflow.deps.json
+D:\Workflow\Workflow\Workflow\bin\Debug\net6.0\Workflow.runtimeconfig.json
+D:\Workflow\Workflow\Workflow\bin\Debug\net6.0\Workflow.dll
+D:\Workflow\Workflow\Workflow\bin\Debug\net6.0\Workflow.pdb
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.csproj.AssemblyReference.cache
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.AssemblyInfoInputs.cache
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.AssemblyInfo.cs
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.csproj.CoreCompileInputs.cache
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.dll
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\refint\Workflow.dll
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.pdb
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\Workflow.genruntimeconfig.cache
+D:\Workflow\Workflow\Workflow\obj\Debug\net6.0\ref\Workflow.dll
