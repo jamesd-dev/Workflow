@@ -1,4 +1,7 @@
-﻿namespace Workflow;
+﻿using System.Text.RegularExpressions;
+using static Workflow.Utils;
+
+namespace Workflow;
 
 public class AlphNumber
 {
@@ -6,33 +9,61 @@ public class AlphNumber
     private static readonly string Digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static readonly int Base = Digits.Length;
     
-    public string AlphValue { get; private set; }
-    public long DecimalValue { get; private set; }
+    public string Value { get; private set; }
 
     public AlphNumber(long decimalNumber)
     {
-        DecimalValue = decimalNumber;
-        AlphValue = GetAlphNumberFromLong(DecimalValue);
+        Value = GetAlphNumberFromLong(decimalNumber);
     }
     
     public AlphNumber(string alphNumber)
     {
-        AlphValue = alphNumber.ToUpper();
-        DecimalValue = GetLongFromAlphNumber(AlphValue);
+        Value = alphNumber.ToUpper();
+    }
+
+    private static string Add(string a, string b)
+    {
+        if (!IsValidAlphNumber(a) || !IsValidAlphNumber(b))
+        {
+            throw new ArgumentException("Must provide a valid alphNumber");
+        }
+        
+        string result = "";
+        int carry = 0;
+        for (int i = a.Length - 1; i >= 0; i--)
+        {
+            char aDigit = a[i];
+            char bDigit = b[i];
+            int aValue = Digits.IndexOf(aDigit);
+            int bValue = Digits.IndexOf(bDigit);
+            int totalValue = aValue + bValue + carry;
+            carry = totalValue / Base;
+            int remainder = totalValue % Base;
+            char remainderDigit = Digits[remainder];
+            result += remainderDigit;
+        }
+
+        if (carry > 0)
+        {
+            throw new Exception("Cannot add two alphNumbers when total is greater than the max digits set.");
+        }
+
+        result = Reverse(result);
+        return result;
+    }
+
+    private static bool IsValidAlphNumber(string alphNumber)
+    {
+        string pattern = "[0-9A-Z]{" + MaxDigits + "}"; 
+        Regex rg = new Regex(pattern);
+        return rg.IsMatch(alphNumber);
     }
 
     public void Increment()
     {
-        DecimalValue += 1;
-        AlphValue = GetAlphNumberFromLong(DecimalValue);
+        Value = Add(Value, "0001");
     }
-    
-    public void Decrement()
-    {
-        DecimalValue -= 1;
-        AlphValue = GetAlphNumberFromLong(DecimalValue);
-    }
-    
+
     private static string GetAlphNumberFromLong(long num)
     {
         bool numberIsTooLarge = num > Math.Pow(Base, MaxDigits) - 1;
@@ -66,6 +97,11 @@ public class AlphNumber
 
     private static long GetLongFromAlphNumber(string alphNumber)
     {
+        if (!IsValidAlphNumber(alphNumber))
+        {
+            throw new ArgumentException("Must provide a valid alphNumber");
+        }
+        
         bool numberIsTooLarge = alphNumber.Length > MaxDigits;
         if (numberIsTooLarge)
         {
